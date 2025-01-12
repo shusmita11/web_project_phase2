@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="../asset/CSS/loginStyle.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login">Login</div>
+            <form action="../controller/loginCheck.php" method="post">
+                <div class="form">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form">
+                    
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                </div>
+
+                <div class="form">
+                    <label for="password">Password:</label>
+                    <select name="userType"> 
+                        <option value="" disabled selected>Select user type</option>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="admin">Admin</option>
+                    </select><br>
+                </div>
+
+                <input type="button" name="login" value="Login" onclick="confirmLogin()">
+            </form>
+
+            <div class="signup-link">
+                Don't have an account? <a href="../view/registration.html">Sign Up</a>
+            </div>
+
+            <div class="signup-link">
+                Forgot Password? <a href="../view/forgetPassword.php">Click Here</a>
+            </div>
+        </div>
+
+        <script src="../asset/JS/loginCheck.js"></script>
+    </body>
+</html>
