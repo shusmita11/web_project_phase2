@@ -1,5 +1,4 @@
 <?php
-
     function getConnection()
     {
         $conn = mysqli_connect('127.0.0.1', 'root', '', 'web_project');
@@ -39,7 +38,10 @@
         if ($count==1)
         {
             $user = mysqli_fetch_assoc($result);
-            $_SESSION['name'] = $user['first_name'] . ' ' . $user['last_name'];
+            if($userType === 'patient')
+            {
+                $_SESSION['name'] = $user['first_name'] . ' ' . $user['last_name'];
+            }
             return true;
         }
 

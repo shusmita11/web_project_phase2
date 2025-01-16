@@ -1,14 +1,10 @@
-function validateLoginForm(email, password, userType) {
-        // Validate email
-        const validateEmail = email => email.length !== '';
+function checkLogin(email, password, userType)
+{
+        let checkEmail = email => email.length !== '';
+        let checkPassword = password => password.length !== '';
+        let checkUserType = userType => userType !== '';
 
-        // Validate password (at least 8 characters)
-        const validatePassword = password => password.length !== '';
-
-        // Validate userType (not empty)
-        const validateUserType = userType => userType !== '';
-
-        if (validateEmail(email) && validatePassword(password) &&validateUserType(userType))
+        if (checkEmail(email) && checkPassword(password) &&checkUserType(userType))
         {
             return true;
         }
@@ -18,12 +14,13 @@ function validateLoginForm(email, password, userType) {
     
     function confirmLogin()
     {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const userType = document.querySelector('select[name="userType"]').value;
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let userType = document.querySelector('select[name="userType"]').value;
     
             // Validate the form inputs
-            if (!validateLoginForm(email, password, userType)) {
+            if (!checkLogin(email, password, userType))
+            {
                 alert("Invalid input. Please ensure all fields are correctly filled.");
                 return;
             }
@@ -49,16 +46,26 @@ function validateLoginForm(email, password, userType) {
                     console.log("Server response:", this.responseText);
                     const response = this.responseText.trim();
     
-                    if (response === "patient") {
+                    if (response === "patient")
+                    {
                         alert("Login successful! Redirecting to patient dashboard...");
                         window.location.href = "../view/patientDashboard.php";
-                    } else if (response === "doctor") {
+                    }
+                    
+                    else if (response === "doctor")
+                    {
                         alert("Login successful! Redirecting to doctor dashboard...");
                         window.location.href = "../view/doctorDashboard.php";
-                    } else if (response === "admin") {
+                    }
+                    
+                    else if (response === "admin")
+                    {
                         alert("Login successful! Redirecting to admin dashboard...");
                         window.location.href = "../view/adminDashboard.php";
-                    } else {
+                    }
+                    
+                    else
+                    {
                         alert("Error: " + response);
                     }
                 }

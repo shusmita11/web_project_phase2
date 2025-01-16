@@ -8,7 +8,6 @@ function getConnection()
 
 if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    //associative array
     $input = json_decode(file_get_contents('php://input'), true);
     
     if($input)

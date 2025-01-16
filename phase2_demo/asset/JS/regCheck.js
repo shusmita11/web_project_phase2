@@ -1,22 +1,38 @@
-function validateAndSubmit()
+function checkReg()
 {
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const nid = document.getElementById('nid').value.trim();
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value.trim();
-    const dob = document.getElementById('dob').value.trim();
-    const gender = document.querySelector('input[name="gender"]:checked')?.value || '';
-    const address = document.getElementById('address').value.trim();
-    const medHistory = document.getElementById('medHistory').value.trim();
-    const emergencyContact = document.getElementById('emergencyContact').value.trim();
+    let firstName = document.getElementById('firstName').value.trim();
+    let lastName = document.getElementById('lastName').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    let nid = document.getElementById('nid').value.trim();
+    let password = document.getElementById('password').value;
+    let confirmPassword = document.getElementById('confirmPassword').value.trim();
+    let dob = document.getElementById('dob').value.trim();
+    let gender = document.querySelector('input[name="gender"]:checked')?.value || '';
+    let address = document.getElementById('address').value.trim();
+    let medHistory = document.getElementById('medHistory').value.trim();
+    let emergencyContact = document.getElementById('emergencyContact').value.trim();
 
     // Validation
-    const validateName = name => name.length >= 2 && name.split('').every(char => (char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z'));
-
-    const validateEmail = email => {
+    const checkName = name => {
+        if (name.length < 2)
+        {
+            return false;
+        }
+    
+        for (let i = 0; i < name.length; i++)
+        {
+            const char = name[i];
+            if (!((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')))
+            {
+                return false;
+            }
+        }
+        return true;
+    };
+    
+    
+    const checkEmail = email => {
         if (email.includes('@') && email.includes('.'))
             {
             const parts = email.split('@');
@@ -33,7 +49,7 @@ function validateAndSubmit()
         return false;
     };
     
-    const validateContact = contact => {
+    const checkContact = contact => {
         if (contact.length === 11) {
             for (let i = 0; i < contact.length; i++)
             {
@@ -47,7 +63,7 @@ function validateAndSubmit()
         return false;
     };
     
-    const validateNid = nid => {
+    const checkNid = nid => {
         if (nid.length === 10) {
             for (let i = 0; i < nid.length; i++)
             {
@@ -61,7 +77,7 @@ function validateAndSubmit()
         return false;
     };
     
-    const validatePassword = (pass, confirmPassword) => {
+    const checkPassword = (pass, confirmPassword) => {
         if (pass.length >= 8) {
             let hasSpecialChar = false;
             const specialChars = ['@', '#', '$', '*', '&', '%'];
@@ -78,44 +94,44 @@ function validateAndSubmit()
         return false;
     };
     
-    const validateDob = dob => {
+    const checkDob = dob => {
         const year = new Date(dob).getFullYear();
         return year >= 1920 && year <= 2010;
     };
     
 
     // Validate inputs
-    if (!validateName(firstName) || !validateName(lastName)) 
+    if (!checkName(firstName) || !checkName(lastName)) 
     {
         alert("Invalid name");
         return;
     }
 
-    if (!validateEmail(email))
+    if (!checkEmail(email))
     {
         alert("Invalid email");
         return;
     }
 
-    if (!validateContact(phone) || !validateContact(emergencyContact))
+    if (!checkContact(phone) || !checkContact(emergencyContact))
     {
         alert("Invalid contact number");
         return;
     }
 
-    if (!validateNid(nid))
+    if (!checkNid(nid))
     {
         alert("Invalid NID");
         return;
     }
 
-    if (!validatePassword(password, confirmPassword))
+    if (!checkPassword(password, confirmPassword))
     {
         alert("Invalid password");
         return;
     }
 
-    if (!validateDob(dob))
+    if (!checkDob(dob))
     {
         alert("Invalid date of birth");
         return;
